@@ -19,13 +19,6 @@ const people: TeamMember[] = [
     image: 'team/darryl-pereira.jpg',
   },
   {
-    name: 'Mrs. Rosenda Pereira',
-    role: 'Manager',
-    initials: 'RP',
-    description: 'Directs practice operations, institutional relations, registry coordination, and executive administration.',
-    image: 'team/rosenda-pereira.jpg',
-  },
-  {
     name: 'Adv. Natasha M. Kasad',
     role: 'Senior Legal Associate',
     initials: 'NMK',
@@ -40,9 +33,9 @@ const people: TeamMember[] = [
     image: 'team/beverly-fernandes.jpg',
   },
   {
-    name: 'Adv. Lisa Marie',
+    name: 'Adv. Lisa Marie Chittilappilly',
     role: 'Junior Associate',
-    initials: 'LC',
+    initials: 'LMC',
     description: 'Junior Associate assisting on case law research, title searches and documentation filings.',
     image: 'team/lisa-marie.jpg',
   },
