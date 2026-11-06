@@ -35,7 +35,7 @@ const pageMetadata = {
   },
 };
 
-function usePageMetadata(title: string, description: string) {
+function usePageMetadata(title: string, description: string, path = '') {
   useEffect(() => {
     document.title = title;
 
@@ -58,36 +58,48 @@ function usePageMetadata(title: string, description: string) {
     setMeta('meta[property="og:description"]', 'content', description);
     setMeta('meta[name="twitter:title"]', 'content', title);
     setMeta('meta[name="twitter:description"]', 'content', description);
-  }, [description, title]);
+
+    const canonicalUrl = `https://www.pereiraassociates.in${path}`;
+    setMeta('meta[property="og:url"]', 'content', canonicalUrl);
+    setMeta('meta[name="twitter:url"]', 'content', canonicalUrl);
+
+    let canonical = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = canonicalUrl;
+  }, [description, path, title]);
 }
 
 function HomePage() {
-  usePageMetadata(pageMetadata.home.title, pageMetadata.home.description);
+  usePageMetadata(pageMetadata.home.title, pageMetadata.home.description, '/');
   return <Home />;
 }
 
 function AboutPage() {
-  usePageMetadata(pageMetadata.about.title, pageMetadata.about.description);
+  usePageMetadata(pageMetadata.about.title, pageMetadata.about.description, '/about');
   return <About />;
 }
 
 function ExpertisePage() {
-  usePageMetadata(pageMetadata.expertise.title, pageMetadata.expertise.description);
+  usePageMetadata(pageMetadata.expertise.title, pageMetadata.expertise.description, '/expertise');
   return <Expertise />;
 }
 
 function TeamPage() {
-  usePageMetadata(pageMetadata.team.title, pageMetadata.team.description);
+  usePageMetadata(pageMetadata.team.title, pageMetadata.team.description, '/team');
   return <Team />;
 }
 
 function KnowledgePage() {
-  usePageMetadata(pageMetadata.knowledge.title, pageMetadata.knowledge.description);
+  usePageMetadata(pageMetadata.knowledge.title, pageMetadata.knowledge.description, '/knowledge');
   return <KnowledgeCenter />;
 }
 
 function ContactPage() {
-  usePageMetadata(pageMetadata.contact.title, pageMetadata.contact.description);
+  usePageMetadata(pageMetadata.contact.title, pageMetadata.contact.description, '/contact');
   return <Contact />;
 }
 
